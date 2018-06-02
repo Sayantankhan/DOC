@@ -1,7 +1,11 @@
 #SSL Setup (HTTPS)::
 Tomcat only supoort Java keygen tool.So We are using java keytool to generate the certificate.
 
+keystore::
 keytool.exe -genkey -alias tomcat -keyalg RSA -keystore <LOCATION TO SAVE>
+
+cert::
+keytool -certreq -keyalg RSA -alias [youralias] -file [yourcertificatname].csr -keystore [path/to/your/keystore]
 
 see the key fingerprint::
 keytool -list -keystore <LOCATION TO SAVE>
@@ -12,3 +16,17 @@ Tomcat_Folder > conf > server.xml
 go to Connector port  8443 for tls/ssl 
 Add SSLHOstConfig > certificateKeystoreFile = "<location where cert stored>" and keystorePass="<passowrd  of that cert>"
 
+Config ::
+
+<SSLHostConfig>       
+    <Certificate ... />
+</SSLHostConfig> 
+
+or put that with connector
+
+<Connector port="8443" protocol="HTTP/1.1" SSLEnabled="true"
+     maxThreads="150" scheme="https" secure="true"
+     keystoreFile="keystore.jks" keyAlias="alias"
+     keystorePass="password"
+     clientAuth="false" sslProtocol="TLS" />
+ 
