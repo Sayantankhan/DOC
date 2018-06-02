@@ -1,0 +1,36 @@
+# IPFS
+IPFS Knowledge
+
+IPFS began as an effort to build a system that is very fast at moving around versioned scientific data. Versioning gives you the ability to track how states of software change over time (think Git). IPFS has since become thought of as the The Distributed, Permanent Web ; “IPFS is a distributed file system that seeks to connect all computing devices with the same system of files. In some ways, this is similar to the original aims of the Web, but IPFS is actually more similar to a single bittorrent swarm exchanging git objects. IPFS could become a new major subsystem of the internet. If built right, it could complement or replace HTTP.
+
+IPFS has rules as to how data and content move around on the network that are similar in nature to bittorrent. This file system layer offers very interesting properties such as:
+
+- websites that are completely distributed
+
+- websites that have no origin server
+
+- websites that can run entirely on client side browsers
+
+- websites that do not have any servers to talk to
+
+IPFS uses content addressing at the HTTP layer. This is the practice of saying instead of creating an identifier that addresses things by location, we’re going to address it by some representation of the content itself. This means that the content is going to determine the address. The mechanism is to take a file, hash it cryptographically so you end up with a very small and secure representation of the file which ensures that someone can not just come up with another file that has the same hash and use that as the address. The address of a file in IPFS usually starts with a hash that identifies some root object and then a path walking down. Instead of a server, you are talking to a specific object and then you are looking at a path within that object.
+
+
+IPFS Objects
+IPFS is essentially a P2P system for retrieving and sharing IPFS objects. An IPFS object is a data structure with two fields:
+    Data — a blob of unstructured binary data of size < 256 kB.
+    Links — an array of Link structures. These are links to other IPFS objects.
+A Link structure has three data fields:
+    Name — the name of the Link.
+    Hash — the hash of the linked IPFS object.
+    Size — the cumulative size of the linked IPFS object, including following its links.
+The Size field is mainly used for optimizing the P2P networking and we’re going to mostly ignore it here, since conceptually it’s not needed for the logical structure.If The size of the file is large then the name field remain blank.As beacuse it is comming from multiple nodes.SHA256 algorithm is used to encrypt the data
+
+::COMMANDS::
+ipfs add -r . :: add whole directory
+ipfs cat <hash> > <name_to_store>  :: Save the file 
+ipfs object get <hash> :: see the file
+ipfs name publish <hash>  :: publish to network
+http://localhost:<port>/ipfs/<hash>   :: locally
+https://gateway.ipfs.io/ipfs/<hash>	  :: exposed through any gateway
+http://localhost:<port>/webui/   	  :: monitoring the node 
