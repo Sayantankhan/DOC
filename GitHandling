@@ -12,3 +12,15 @@ Git config::
 >$ git commit -m "<comment>"
 >$ git remote add origin <Repo_Repo_Name>
 >$ git push -u origin master
+
+create a new repository on the command line
+echo "# NodeMicroServices" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin https://github.com/Sayantankhan/NodeMicroServices.git
+git push -u origin master
+
+or push an existing repository from the command line
+git remote add origin https://github.com/Sayantankhan/NodeMicroServices.git
+git push -u origin master
